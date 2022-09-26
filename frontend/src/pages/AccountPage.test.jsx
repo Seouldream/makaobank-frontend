@@ -1,7 +1,7 @@
-import { render, waitFor } from "@testing-library/react"
+// import { render, waitFor } from "@testing-library/react"
 
-test('AccountPage', async ()) => {
-    render(<AccountPage />);
+// test('AccountPage', async ()) => {
+//     render(<AccountPage />);
 
-    await waitFor()
-}
+//     await waitFor()
+// }

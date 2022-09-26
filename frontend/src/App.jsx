@@ -1,30 +1,53 @@
+import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import AccountPage from './pages/AccountPage';
+import { Reset } from 'styled-reset';
+import styled, { ThemeProvider } from 'styled-components';
+import Header from './components/Header';
+import GlobalStyle from './styles/GlobalStyle';
 import HomePage from './pages/HomePage';
-import TransferPage from './pages/transferPage';
-import TransactionsPage from './pages/transactionsPage';
+import AccountPage from './pages/AccountPage';
+import TransferPage from './pages/TransferPage';
+import TransactionsPage from './pages/TransactionsPage';
+
+import defaultTheme from './styles/defaultTheme';
+import darkTheme from './styles/darkTheme';
+import PrimaryButton from './components/ui/PrimaryButton';
+import SecondaryButton from './components/ui/SecondaryButton';
+import Button from './components/ui/Button';
+
+const Main = styled.main`
+  padding: 1em;
+`;
 
 export default function App() {
-  const { pathname } = window.location;
+  const [theme, setTheme] = useState(defaultTheme);
 
-  const components = {
-    '/': HomePage,
-    '/account': AccountPage,
-    '/transfer': TransferPage,
-    '/transactions': TransactionsPage,
+  const toggleTheme = () => {
+    setTheme(theme === defaultTheme ? darkTheme : defaultTheme);
   };
 
-  const Component = components[pathname] || HomePage;
-
   return (
-    <div>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/account" element={<AccountPage />} />
-        <Route path="/transfer" element={<TransferPage />} />
-        <Route path="/transactions" element={<TransactionsPage />} />
-      </Routes>
-    </div>
-
+    <ThemeProvider theme={theme}>
+      <Reset />
+      <GlobalStyle />
+      <Header />
+      <Button type="button" onClick={toggleTheme}>
+        Toggle mode
+      </Button>
+      <PrimaryButton type="button" onClick={toggleTheme}>
+        Toggle mode
+      </PrimaryButton>
+      <SecondaryButton type="button" onClick={toggleTheme}>
+        Toggle mode
+      </SecondaryButton>
+      <Main>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/account" element={<AccountPage />} />
+          <Route path="/transfer" element={<TransferPage />} />
+          <Route path="/transactions" element={<TransactionsPage />} />
+        </Routes>
+      </Main>
+    </ThemeProvider>
   );
 }

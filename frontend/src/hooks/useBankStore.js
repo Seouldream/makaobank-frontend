@@ -1,7 +1,5 @@
-import useForceUpdate from './useForceupdate';
+// import useForceUpdate from './useForceupdate';
 
-export default function useBankStore() {
-  const forceUpdate = useForceUpdate();
-
-  
-}
+// export default function useBankStore() {
+//   const forceUpdate = useForceUpdate();
+// }

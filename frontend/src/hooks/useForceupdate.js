@@ -1,3 +1,3 @@
 export default function useForceUpdate() {
-    const [, forceUpdate] = useState();
+  const [, forceUpdate] = useState();
 }

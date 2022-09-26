@@ -1,5 +1,5 @@
 export default function AccountPage() {
   return (
-    <p>Account</p>
+    <p>잔액: 123,000원</p>
   );
 }

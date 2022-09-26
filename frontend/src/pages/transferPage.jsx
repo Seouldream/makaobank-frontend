@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import PrimaryButton from '../components/ui/PrimaryButton';
+
 export default function TransferPage() {
   const [success, setSuccess] = useState(false);
 
@@ -27,9 +30,9 @@ export default function TransferPage() {
           type="text"
         />
       </div>
-      <button type="submit">
+      <PrimaryButton type="submit">
         보내기
-      </button>
+      </PrimaryButton>
       {success ? (
         <p>계좌 이체 성공</p>
       ) : null}
