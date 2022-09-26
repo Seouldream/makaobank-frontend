@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Reset } from 'styled-reset';
 import styled, { ThemeProvider } from 'styled-components';
+import { useLocalStorage } from 'usehooks-ts';
 import Header from './components/Header';
 import GlobalStyle from './styles/GlobalStyle';
 import HomePage from './pages/HomePage';
@@ -20,10 +21,12 @@ const Main = styled.main`
 `;
 
 export default function App() {
-  const [theme, setTheme] = useState(defaultTheme);
+  const [themeName, setThemeName] = useLocalStorage('theme', 'default');
+
+  const theme = themeName === 'dark' ? darkTheme : defaultTheme;
 
   const toggleTheme = () => {
-    setTheme(theme === defaultTheme ? darkTheme : defaultTheme);
+    setThemeName(themeName === 'default' ? 'dark' : 'default');
   };
 
   return (
