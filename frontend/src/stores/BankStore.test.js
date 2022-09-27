@@ -57,4 +57,14 @@ describe('BankStore', () => {
       });
     });
   });
+
+  describe('fetchAccount', () => {
+    it('sets account information', async () => {
+      await bankStore.fetchAccount();
+
+      expect(bankStore.name).toBe('Tester');
+      expect(bankStore.accountNumber).toBe('1234');
+      expect(bankStore.amount).toBe(100_000);
+    });
+  });
 });

@@ -1,7 +1,12 @@
-// import { render, waitFor } from "@testing-library/react"
+import { render, screen, waitFor } from '@testing-library/react';
+import AccountPage from './AccountPage';
 
-// test('AccountPage', async ()) => {
-//     render(<AccountPage />);
+test('AccountPage', async () => {
+  render(<AccountPage />);
 
-//     await waitFor()
-// }
+  waitFor(() => {
+    screen.getByText(/이름: Tester/);
+    screen.getByText(/계좌번호/);
+    screen.getByText(/잔액/);
+  });
+});

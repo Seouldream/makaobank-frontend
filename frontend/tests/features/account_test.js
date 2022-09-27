@@ -1,23 +1,31 @@
 Feature('Account detail');
 
 Before(({ I }) => {
-  // ToDo: 계좌 설정
+  I.setupDatabase();
 
   I.amOnPage('/');
 
   // ToDo: 로그인
 });
 
-// ToDo: 잔액 없는 경우 처리 필요함.
-// Scenario('I have no money', ({ I }) => {
-//   // when
-//   I.click('잔액 확인');
+Scenario('잔액이 없는 경우', ({ I }) => {
+  // given
 
-//   // then
-//   I.see('잔액이 없습니다');
-// });
+  // GET /backdoor/change-amount?userId=1&amount=0
+  I.changeAmount({ userId: 1, amount: 0 });
 
-Scenario('I have money', ({ I }) => {
+  I.amOnPage('/');
+
+  // when
+  I.click('잔액 확인');
+
+  // then
+  I.see('잔액이 없습니다');
+});
+
+Scenario('잔액이 있는 경우', ({ I }) => {
+  // given
+  I.changeAmount({ userId: 1, amount: 123000 });
   // when
 
   I.click('잔액 확인');

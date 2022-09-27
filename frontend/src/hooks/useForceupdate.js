@@ -1,3 +1,9 @@
+import { useState } from 'react';
+
 export default function useForceUpdate() {
-  const [, forceUpdate] = useState();
+  const [count, setCount] = useState(0);
+
+  return () => {
+    setCount(count + 1);
+  };
 }

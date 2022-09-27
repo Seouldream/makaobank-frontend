@@ -14,6 +14,13 @@ export default class ApiService {
       amount: data.amount,
     };
   }
+
+  async fetchAccount() {
+    const url = `${baseUrl}/accounts/me`;
+    const { data } = await axios.get(url);
+    const { name, accountNumber, amount } = data;
+    return { name, accountNumber, amount };
+  }
 }
 
 export const apiService = new ApiService();
