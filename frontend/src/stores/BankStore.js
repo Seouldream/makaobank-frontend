@@ -1,20 +1,28 @@
-export default function BankStore() {
-    constructor() {
-        this.listeners = set();
+import { apiService } from '../services/ApiService';
 
-        this.accountNUYmber='';
-        this.name='';
-        this.amount= '';
-        this.transactions = [];
+export default class BankStore {
+  constructor() {
+    this.accountNumber = '';
+    this.name = '';
+    this.amount = 0;
+    this.transactions = [];
+  }
+
+  async login({ accountNumber, password }) {
+    try {
+      const { accessToken, name, amount } = await apiService.postSession({
+        accountNumber,
+        password,
+      });
+
+      this.name = name;
+      this.amount = amount;
+
+      return accessToken;
+    } catch (e) {
+      return '';
     }
-
-    requestTransfer({to, amount, name}) {
-        this.isTransferProcessing = true;
-
-        this.isTransferSuccess = true;
-
-        this.publish();
-
-    }
-
+  }
 }
+
+export const bankStore = new BankStore();

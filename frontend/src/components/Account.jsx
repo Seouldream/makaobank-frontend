@@ -1,13 +1,13 @@
-import BankStore from "../stores/BankStore";
+import BankStore from '../stores/BankStore';
 
 export default function Account() {
- return (
+  return (
     <div>
-        <p>
-            이름:
-            {' '}
-            {BankStore.name}
-        </p>
+      <p>
+        이름:
+        {' '}
+        {BankStore.name}
+      </p>
     </div>
- )   
+  );
 }
