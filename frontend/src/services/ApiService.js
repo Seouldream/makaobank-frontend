@@ -6,7 +6,7 @@ const baseUrl = 'http://localhost:8000';
 export default class ApiService {
   async postSession({ accountNumber, password }) {
     const url = `${baseUrl}/session`;
-    const { data } = axios.post(url, { accountNumber, password });
+    const { data } = await axios.post(url, { accountNumber, password });
 
     return {
       accessToken: data.accessToken,
@@ -20,6 +20,11 @@ export default class ApiService {
     const { data } = await axios.get(url);
     const { name, accountNumber, amount } = data;
     return { name, accountNumber, amount };
+  }
+
+  async createTransaction({ to, amount, name }) {
+    const url = `${baseUrl}/transactions`;
+    await axios.post(url, { to, amount, name });
   }
 }
 

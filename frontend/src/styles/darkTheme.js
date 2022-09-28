@@ -7,7 +7,7 @@ const darkTheme = {
     primaryText: 'FFF',
     secondary: '#0F0',
     secondaryText: '#000',
-
+    disabled: '#EEE',
   },
 };
 

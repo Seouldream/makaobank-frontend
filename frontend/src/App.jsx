@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Reset } from 'styled-reset';
 import styled, { ThemeProvider } from 'styled-components';
