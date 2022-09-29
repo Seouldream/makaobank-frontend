@@ -35,7 +35,7 @@ export default function Header() {
             <Link to="/transfer">송금</Link>
           </li>
           <li>
-            <Link to="/transactions">Transactions</Link>
+            <Link to="/transactions">거래 내역 확인</Link>
           </li>
         </ul>
       </nav>

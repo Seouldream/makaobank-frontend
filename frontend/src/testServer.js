@@ -27,14 +27,13 @@ const server = setupServer(
     accountNumber: '1234',
     amount: 100_000,
   }))),
-
-  // rest.get(`${baseUrl}/transactions`, async (req, res, ctx) => res(ctx.json({
-  //   transactions: [
-  //     {
-  //       id: 1, activity: '송금', name: 'Raichu', amount: 3_000,
-  //     },
-  //   ],
-  // }))),
+  rest.get(`${baseUrl}/transactions`, async (req, res, ctx) => res(ctx.json({
+    transactions: [
+      {
+        id: 1, activity: '송금', name: '5678', amount: 3_000,
+      },
+    ],
+  }))),
 
   rest.post(`${baseUrl}/transactions`, async (req, res, ctx) => {
     const { amount } = await req.json();
