@@ -6,7 +6,7 @@ Before(({ I }) => {
 
   // ToDo: 계좌 설정
 
-  // ToDo: 로그인
+  I.login('1234');
 });
 
 Scenario('거래 내역이 없는 경우', ({ I }) => {

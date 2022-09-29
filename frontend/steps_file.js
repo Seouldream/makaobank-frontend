@@ -4,14 +4,25 @@ const backdoorBaseUrl = 'http://localhost:8000/backdoor';
 
 module.exports = () => actor({
   setupDatabase() {
-    this.amOnPage(`${backdoorBaseUrl}/backdoor/setup-database`);
+    this.amOnPage(`${backdoorBaseUrl}/setup-database`);
   },
 
-  changeAmount(userId, amount) {
+  changeAmount({ userId, amount }) {
     this.amOnPage([
       `${backdoorBaseUrl}/change-amount`,
       `?userId=${userId}&amount=${amount}`,
     ].join(''));
+  },
+
+  login(accountNumber) {
+    this.amOnPage('/login');
+
+    this.fillField('계좌 번호', accountNumber);
+    this.fillField('패스워드', 'password');
+    this.click('[type=submit]');
+
+    // then
+    this.waitForText('로그아웃');
   },
 
   transfer({ to, amount, name }) {

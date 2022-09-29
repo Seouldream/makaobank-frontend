@@ -1,7 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react';
-import TransactionsPage from '../pages/transactionsPage';
+import TransactionsPage from '../pages/TransactionsPage';
 import { bankStore } from '../stores/BankStore';
-import Transactions from './Transactions';
 
 test('Transactions', async () => {
   await bankStore.fetchTransactions();

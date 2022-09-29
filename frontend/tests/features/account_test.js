@@ -3,9 +3,9 @@ Feature('Account detail');
 Before(({ I }) => {
   I.setupDatabase();
 
-  I.amOnPage('/');
+  I.login('1234');
 
-  // ToDo: 로그인
+  I.amOnPage('/');
 });
 
 Scenario('잔액이 없는 경우', ({ I }) => {
@@ -27,6 +27,7 @@ Scenario('잔액이 있는 경우', ({ I }) => {
   // given
   I.changeAmount({ userId: 1, amount: 123000 });
   // when
+  I.amOnPage('/');
 
   I.click('잔액 확인');
   // then
