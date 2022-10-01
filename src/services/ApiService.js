@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import axios from 'axios';
 
-const baseUrl = 'https://makaobank-final-hoonstudio.herokuapp.com/';
+const baseUrl = 'https://makaobank-final-hoonstudio.herokuapp.com';
 
 export default class ApiService {
   constructor() {
