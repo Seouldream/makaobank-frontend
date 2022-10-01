@@ -1,14 +1,11 @@
 const defaultTheme = {
   colors: {
-    background: '#FFF',
+    background: '#F5F5F5',
     text: '#000',
-    panel: '#DDD',
+    panel: 'linear-gradient(300deg, #a1c4fd 0%, #c2e9fb 100%)',
     primary: '#00F',
     primaryText: '#FFF',
-    secondary: '#0F0',
-    secondaryText: '#FFF',
-    disabled: '#888',
-    disabledText: '#FFF',
+    button: '#ABD9FF',
   },
 };
 

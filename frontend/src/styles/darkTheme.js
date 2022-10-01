@@ -1,14 +1,11 @@
 const darkTheme = {
   colors: {
-    background: '#000',
+    background: '#1D1D1D',
     text: '#FFF',
-    panel: '#555',
+    panel: 'linear-gradient(-20deg, #2b5876 0%, #4e4376 100%)',
     primary: '#00F',
-    primaryText: 'FFF',
-    secondary: '#0F0',
-    secondaryText: '#000',
-    disabled: '#EEE',
+    primaryText: '#FFF',
+    button: '#607EAA',
   },
 };
-
 export default darkTheme;

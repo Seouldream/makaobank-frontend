@@ -11,6 +11,10 @@ export default class BankStore {
 
     this.transferState = '';
 
+    this.loginState = '';
+
+    this.registrationState = '';
+
     this.errorMessage = '';
   }
 
@@ -29,17 +33,30 @@ export default class BankStore {
   async login({ accountNumber, password }) {
     try {
       const { accessToken, name, amount } = await apiService.postSession({
-        accountNumber,
-        password,
+        accountNumber, password,
       });
-      // console.log(`name: ${name}`);
-      // console.log(`amount: ${amount}`);
+
       this.name = name;
       this.amount = amount;
 
       return accessToken;
     } catch (e) {
+      const { message } = e.response.data;
+      this.changeLoginState('fail', { errorMessage: message });
       return '';
+    }
+  }
+
+  async register({
+    name, accountNumber, password, confirmPassword,
+  }) {
+    try {
+      await apiService.createAccount({
+        name, accountNumber, password, confirmPassword,
+      });
+    } catch (e) {
+      const { message } = e.response.data;
+      this.changeRegistrationState('existing', { errorMessage: message });
     }
   }
 
@@ -61,8 +78,30 @@ export default class BankStore {
       this.changeTransferState('success');
     } catch (e) {
       const { message } = e.response.data;
-      this.changeTransferState('fail', { errorMessage: message });
+      if (message === '잘못된 계좌번호입니다. 다시 입력해주세요') {
+        this.changeTransferState('nonexistent', { errorMessage: message });
+      }
+
+      if (message === '계좌 잔액이 부족합니다') {
+        this.changeTransferState('insufficient', { errorMessage: message });
+      }
+
+      if (message === '본인의 계좌입니다. 다시 입력해주세요') {
+        this.changeTransferState('myAccount', { errorMessage: message });
+      }
     }
+  }
+
+  changeLoginState(state, { errorMessage = '' } = {}) {
+    this.errorMessage = errorMessage;
+    this.loginState = state;
+    this.publish();
+  }
+
+  changeRegistrationState(state, { errorMessage = '' } = {}) {
+    this.errorMessage = errorMessage;
+    this.registrationState = state;
+    this.publish();
   }
 
   changeTransferState(state, { errorMessage = '' } = {}) {
@@ -89,6 +128,26 @@ export default class BankStore {
 
   get isTransferFail() {
     return this.transferState === 'fail';
+  }
+
+  get isEnoughAmount() {
+    return this.transferState === 'insufficient';
+  }
+
+  get isExistentId() {
+    return this.transferState === 'nonexistent';
+  }
+
+  get isMyAccount() {
+    return this.transferState === 'myAccount';
+  }
+
+  get isExistingAccountnumber() {
+    return this.registrationState === 'existing';
+  }
+
+  get isLoginFail() {
+    return this.loginState === 'fail';
   }
 }
 
