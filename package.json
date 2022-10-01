@@ -2,7 +2,7 @@
   "name": "useeffect",
   "version": "1.0.0",
   "description": "",
-  
+  "main": "index.jsx",
   "scripts": {
     "start": "parcel index.html --port 8080",
     "test": "jest",
